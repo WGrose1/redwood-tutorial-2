@@ -1,11 +1,14 @@
-import { Link, routes } from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
+import { Link, routes } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/toast'
 
 const BlogLayout = ({ children }) => {
   const { logOut, isAuthenticated, currentUser } = useAuth()
-
+  console.log('currentUser', currentUser)
+  console.log('isAuthenticated', isAuthenticated)
   return (
     <>
+      <Toaster />
       <header className="relative flex justify-between items-center py-4 px-8 bg-blue-700 text-white">
         <h1 className="text-5xl font-semibold tracking-tight">
           <Link
@@ -49,7 +52,7 @@ const BlogLayout = ({ children }) => {
           </ul>
           {isAuthenticated && (
             <div className="absolute bottom-1 right-0 mr-12 text-xs text-blue-300">
-              {currentUser.email}
+              {currentUser?.email}
             </div>
           )}
         </nav>
